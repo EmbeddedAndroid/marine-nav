@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  gpsd:
+    image: registry.foundries.io/development/microplatforms/linux/extra-containers/gpsd:latest
+    privileged: true
+    restart: always
+    network_mode: "host"
+    command: -n -D2 /dev/serial/by-id/usb-u-blox_AG_-_www.u-blox.com_u-blox_7_-_GPS_GNSS_Receiver-if00
+    devices:
+      - "/dev/serial/by-id/usb-u-blox_AG_-_www.u-blox.com_u-blox_7_-_GPS_GNSS_Receiver-if00:/dev/serial/by-id/usb-u-blox_AG_-_www.u-blox.com_u-blox_7_-_GPS_GNSS_Receiver-if00"
+  rtl-ais:
+    image: registry.foundries.io/development/microplatforms/linux/extra-containers/rtl-ais:latest
+    privileged: true
+    restart: always
+    network_mode: "host"
+    command: /usr/src/app/rtl_ais -n -p 0.506 -g 29 -T -S 1 -R
+    volumes:
+      - /dev:/dev
