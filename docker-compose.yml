@@ -7,8 +7,8 @@ services:
     restart: always
     network_mode: "host"
     command: -n -D2 /dev/serial/by-id/usb-u-blox_AG_-_www.u-blox.com_u-blox_7_-_GPS_GNSS_Receiver-if00
-    devices:
-      - "/dev/serial/by-id/usb-u-blox_AG_-_www.u-blox.com_u-blox_7_-_GPS_GNSS_Receiver-if00:/dev/serial/by-id/usb-u-blox_AG_-_www.u-blox.com_u-blox_7_-_GPS_GNSS_Receiver-if00"
+    volumes:
+      - /dev:/dev
   rtl-ais:
     image: registry.foundries.io/development/microplatforms/linux/extra-containers/rtl-ais:latest
     privileged: true
